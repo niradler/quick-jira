@@ -4,11 +4,21 @@ const argv = require("minimist")(process.argv.slice(2));
 const _ = require("lodash");
 const config = require("./config");
 
-// config.set({ email, apiKey, subDomain });
 const main = async () => {
   try {
     const { email, apiKey, subDomain } = config.all();
     const model = _.get(argv, "_.[0]");
+
+    if (model == "setup") {
+      const { email, apiKey, subDomain } = argv;
+      const o = {};
+      if (email) o.email;
+      if (apiKey) o.apiKey;
+      if (subDomain) o.subDomain;
+      config.set(o);
+      return;
+    }
+
     const _model = require(`./lib/${model}`);
     const func = _.get(argv, "func");
     const i = new _model(email, apiKey, subDomain);
