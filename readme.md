@@ -17,3 +17,5 @@ qjira Issue --func="get" --id="10001"
 ```
 qjira Issue --func="add" --project="DEV" --summary="my great ticket" --issuetype="Bug"
 ```
+
+Edited with Github Editor
